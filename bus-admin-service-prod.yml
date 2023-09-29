@@ -1,0 +1,38 @@
+
+spring:
+  application:
+    name: bus-admin-service
+  zipkin:
+    base-url: http://zipkin-server:9411
+
+  datasource:
+    url: jdbc:postgresql://businventory.cikvtti1fhkz.us-east-2.rds.amazonaws.com:5432/booking
+    username: postgres
+    password: admin123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+      hibernate:
+        ddl-auto: none
+      show-sql: true      # Print SQL queries to console for debugging
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+  activemq:
+    broker-url: tcp://activemq:61616
+    
+eureka:
+  client:
+    service-url:
+      defaultZone: http://bus-eureka-server:8070/eureka
+      
+server:
+  port: 8075
+  servlet:
+    context-path: /admin
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    enabled-by-default: true

@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: bus-gateway-server
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      
+      routes:
+        - id: bus-auth-service
+          uri: lb://BUS-AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+
+        - id: bus-booking-service
+          uri: lb://BUS-BOOKING-SERVICE
+          predicates:
+            - Path=/booking/**
+          filters:
+            - AuthenticationFilter
+
+        - id: bus-payment-service
+          uri: lb://BUS-PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/**
+          filters:
+            - AuthenticationFilter
+
+        - id: bus-inventory-service
+          uri: lb://BUS-INVENTORY-SERVICE
+          predicates:
+            - Path=/inventory/**
+          filters:
+            - AuthenticationFilter
+
+        - id: bus-admin-service
+          uri: lb://BUS-ADMIN-SERVICE
+          predicates:
+            - Path=/admin/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://bus-eureka-server:8070/eureka
+      
+server:
+  port: 8072
+
+jwt:
+  secret: 5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    enabled-by-default: true

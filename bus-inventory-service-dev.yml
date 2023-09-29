@@ -1,0 +1,39 @@
+
+spring:
+  application:
+    name: bus-inventory-service
+  zipkin:
+    base-url: http://localhost:9411
+    
+  datasource:
+    url: jdbc:postgresql://localhost:5432/booking
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+      hibernate:
+        ddl-auto: none
+      show-sql: true      # Print SQL queries to console for debugging
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+  activemq:
+    broker-url: tcp://localhost:61616
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8070/eureka
+      
+server:
+  port: 8073
+  servlet:
+    context-path: /inventory
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    enabled-by-default: true
+

@@ -10,35 +10,35 @@ spring:
       
       routes:
         - id: bus-auth-service
-          uri: lb://BUS-AUTH-SERVICE
+          uri: lb://localhost:8077
           predicates:
             - Path=/auth/**
 
-        - id: bus-booking-service
-          uri: lb://BUS-BOOKING-SERVICE
-          predicates:
-            - bus=/booking/**
-          filters:
-            - AuthenticationFilter
+        # - id: bus-booking-service
+        #   uri: lb://BUS-BOOKING-SERVICE
+        #   predicates:
+        #     - bus=/booking/**
+        #   filters:
+        #     - AuthenticationFilter
 
-        - id: bus-payment-service
-          uri: lb://BUS-PAYMENT-SERVICE
-          predicates:
-            - Path=/payment/**
-          filters:
-            - AuthenticationFilter
+        # - id: bus-payment-service
+        #   uri: lb://BUS-PAYMENT-SERVICE
+        #   predicates:
+        #     - Path=/payment/**
+        #   filters:
+        #     - AuthenticationFilter
 
-        - id: bus-inventory-service
-          uri: lb://BUS-INVENTORY-SERVICE
-          predicates:
-            - Path=/inventory/**
-          filters:
-            - AuthenticationFilter
+        # - id: bus-inventory-service
+        #   uri: lb://BUS-INVENTORY-SERVICE
+        #   predicates:
+        #     - Path=/inventory/**
+        #   filters:
+        #     - AuthenticationFilter
 
-        - id: bus-admin-service
-          uri: lb://BUS-ADMIN-SERVICE
-          predicates:
-            - Path=/admin/**
+        # - id: bus-admin-service
+        #   uri: lb://BUS-ADMIN-SERVICE
+        #   predicates:
+        #     - Path=/admin/**
 
 eureka:
   client:

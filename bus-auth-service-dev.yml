@@ -24,7 +24,7 @@ eureka:
       defaultZone: http://localhost:8070/eureka
       
 server:
-  port: 8085
+  port: 8077
   servlet:
     context-path: /auth
 
